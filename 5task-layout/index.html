@@ -1,0 +1,64 @@
+<!-- Изменение сетки, со списка на сетку -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>5task-layout</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<div id="app" v-cloak>
+		<!-- Переключатели -->
+		<div class="bar">
+			<!-- :class="{'active': layout == 'list'}" - добавляется класс active если переменная layout = list -->
+			<!-- @click.prevent="layout = 'list'" - при клике убрать стандартные действия и присвоить переменной layout значение list -->
+			<a 	href="#" 
+				class="list-icon" 
+				:class="{'active': layout == 'list'}" 
+				@click.prevent="layout = 'list'"
+			></a>
+			<!-- :class="{'active': layout == 'grid'}" - добавляется класс active если переменная layout = grid -->
+			<!-- @click.prevent="layout = 'grid'" - при клике убрать стандартные действия и присвоить переменной layout значение grid -->
+			<a 	href="#" 
+				class="grid-icon" 
+				:class="{'active': layout == 'grid'}" 
+				@click.prevent="layout = 'grid'"
+			></a>
+		</div>
+
+		<!-- список показывать если переменная layout = grid -->
+		<ul class="grid" v-if="layout == 'grid'">
+			<!-- Вывести все элементы articles (каждый элемент будет записан как "a") -->
+			<li v-for="a in articles">
+				<!-- :href="a.url" ссылка = значению a.url -->
+				<a :href="a.url" target="_blank">
+					<!-- У картинки src = значению a.image.large -->
+					<img :src="a.image.large">
+				</a>
+			</li>
+		</ul>
+
+		<!-- список показывать если переменная layout = list -->
+		<ul class="list" v-if="layout == 'list'">
+			<!-- Вывести все элементы articles (каждый элемент будет записан как "a") -->
+			<li v-for="a in articles">
+				<!-- :href="a.url" ссылка = значению a.url -->
+				<a :href="a.url">
+					<!-- У картинки src = значению a.image.small -->
+					<img :src="a.image.small">
+				</a>
+				<!-- вместо квадратных скобок подставить значение a.title -->
+				<p>{{a.title}}</p>
+			</li>
+		</ul>
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>

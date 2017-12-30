@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>3task-form</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<form id="app" v-cloak>
+		<h1>Услуги</h1>
+		<ul>
+			<li v-for="service in services" @click="toggleActive(service)" :class="{'active': service.active}">
+				{{ service.name }} <span>{{service.price | currency}}</span>
+			</li>
+		</ul>
+		<div class="total">
+			Итого <span>{{ total() | currency }}</span>
+		</div>
+	</form>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="app.js"></script>
+</body>
+</html>

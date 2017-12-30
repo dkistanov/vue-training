@@ -1,0 +1,31 @@
+<!-- Переключение меню, смена активных классов -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>task-1menu</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Блок на который действует vue -->
+	<div id="app">
+		<!-- @click.prevent - убираем стандартные действия -->
+		<!-- :class="active" с помощью этого тег nav получает класс, который будет равен переменной active -->
+		<nav @click.prevent :class="active">
+			<!-- при клике вызвать метод с переданным значением в скобках -->
+			<a href="#" class="home" @click="makeActive('home')">Главная</a>
+			<a href="#" class="projects" @click="makeActive('projects')">Проекты</a>
+			<a href="#" class="services" @click="makeActive('services')">Услуги</a>
+			<a href="#" class="contact" @click="makeActive('contact')">Контакты</a>
+		</nav>
+		<!-- Передать переменную active -->
+		<p>Выбран класс <b>{{ active }}</b></p>
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>

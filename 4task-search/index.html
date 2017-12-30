@@ -1,0 +1,32 @@
+<!-- Моментальный поиск. Содержимое инпут сравнивается со значением -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>4task-search</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<form id="app" v-cloak>
+		<div class="bar">
+			<input type="text" placeholder="Введите название статьи" v-model="searchString">
+		</div>
+		<ul>
+			<li v-for="article in filteredArticles">
+				<a :href="article.url">
+					<img :src="article.image">
+					<p>{{article.title}}</p>
+				</a>
+			</li>
+		</ul>
+	</form>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>

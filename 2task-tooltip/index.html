@@ -1,0 +1,31 @@
+<!-- Изменение содержимого с помощью input, и показывание или скрытие tooltip -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>2task-tooltip</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<!-- При клике вызывать метод "hideTooltip" -->
+	<div id="app" v-cloak @click="hideTooltip">
+		<!-- @click.stop обработчик события, с модификатором, останавливающим обработку события. -->
+		<!-- v-if показывать если метод show_tooltip = true -->
+		<div class="tooltip" @click.stop v-if="show_tooltip">
+			<!-- Input привязынный к переменной text_content c помощью функции v-model -->
+			<input type="text" v-model="text_content">
+		</div>
+		<!-- при клике вызывать метод "toggleTooltip", останавливая предыдущий -->
+		<!-- Вместо фигурных скоок показывать содержимое переменной text_content, переменная - динамическая -->
+		<p @click.stop="toggleTooltip">{{ text_content }}</p>
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>
