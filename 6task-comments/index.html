@@ -1,0 +1,58 @@
+<!-- Изменение сетки, со списка на сетку -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>6task-comments</title>
+    <!-- bootstrap for style -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<div class="container" id="app" v-cloak>
+		<div class="alert alert-secondary">
+			<h1>Комментарий</h1>
+			<div class="form-group" :class="{'has-danger' : !name}">
+				<input 
+					type="text" 
+					class="form-control"
+					placeholder="Введите имя"
+					v-model="name"
+					ref="nameComment"
+				>
+			</div>
+			<div class="form-group" :class="{'has-danger' : !text}">
+				<textarea 
+					class="form-control"
+					:placeholder="'Максимально символов : ' + maxText + ' знаков'"
+					v-model="text"
+					:maxlength="maxText"
+					ref="textComment"
+				></textarea>
+				<i v-if="enterComment < maxText">Осталось {{enterComment}} символов</i>
+			</div>
+			<div class="alert alert-danger" v-if="errorMsg">
+				{{errorMsg}}
+			</div>
+			<button class="btn btn-primary" @click="addComment()">
+				Добавить
+			</button>
+		</div>
+		<div class="alert alert-primary" v-if="items.length > 0">
+			<div class="comments" v-for="item in items">
+				<h3>{{item.name}}</h3>
+				<p>{{item.text}}</p>
+				<button class="btn btn-xs btn-danger" @click="removeComment(items)">Удалить</button>
+			</div>
+		</div>
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>

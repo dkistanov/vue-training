@@ -1,0 +1,17 @@
+.alert, .btn, h1 {
+	margin: 20px 0;
+}
+
+.has-danger input,
+.has-danger textarea {
+	border: 1px solid red;
+}
+.has-danger input:focus,
+.has-danger textarea:focus {
+	border-color: red;
+	box-shadow: 0 0 0 0.2rem rgba(255,38,0,.25);
+}
+.comments {
+	border-bottom: 2px solid blue;
+	margin-bottom: 20px;
+}
