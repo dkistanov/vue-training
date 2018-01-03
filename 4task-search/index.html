@@ -13,12 +13,19 @@
 	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
 	<form id="app" v-cloak>
 		<div class="bar">
+			<!-- v-model - связать значение переменной searchString с input -->
 			<input type="text" placeholder="Введите название статьи" v-model="searchString">
 		</div>
 		<ul>
+			<!-- Перебрать массив из считаемой функции filteredArticles, article - каждый элемент -->
 			<li v-for="article in filteredArticles">
+				<!-- :href - href, который работает с vue -->
+				<!-- article.url - ссылка элемента  article-->
 				<a :href="article.url">
+					<!-- :src - href, который работает с vue -->
+					<!-- article.image - картинка элемента article -->
 					<img :src="article.image">
+					<!-- подставить вместо фигурных скобок, значение article.title - заголовок элемента article -->
 					<p>{{article.title}}</p>
 				</a>
 			</li>

@@ -1,9 +1,9 @@
 // Создать сущность Vue
 var demo = new Vue({
 	el: "#app", // Элемент DOM в котором будет работать Vue
-	data: {
-		searchString: "",
-		articles: [
+	data: { // переменные
+		searchString: "", // строка поиска
+		articles: [ // массив данных
 			{
                 "title": "27 сайтов с задачками для оттачивания навыков программирования",
                 "url": "https://proglib.io/p/27-puzzle-websites-to-sharpen-your-skills/",
@@ -31,23 +31,36 @@ var demo = new Vue({
             }
 		]
 	},
+    // вычисляемые свойства
 	computed: {
+        // фильтрованные посты
 		filteredArticles: function(){
-			let articles__array = this.articles,
-				searchString = this.searchString;
+            // переменные
+			let articles__array = this.articles, // все посты
+				searchString = this.searchString; // строка поиска
 
+            // если строка поиска пуста то вернуть все посты
 			if(!searchString) {
 				return articles__array;
 			}
 
+            // обработать строку поиска, и записать её в эту же переменную
+            // .trim() - удалить пробелы
+            // .toLowerCase() - привести к прописному виду
 			searchString = searchString.trim().toLowerCase();
 
+            // отфильтровать массив, и записать его в эту же переменную
+            // .filter(function(){}); - фильтр
+            // item - входящий параметр
 			articles__array = articles__array.filter(function(item) {
+                //  если заголовок соответствует строке поиска то
 				if(item.title.toLowerCase().indexOf(searchString) !== -1) {
-					return item;
+					// вернуть этот элемент массива
+                    return item;
 				}
 			});
 
+            // вернуть полученный массив данных
 			return articles__array;
 		}
 	}

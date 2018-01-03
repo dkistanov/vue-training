@@ -16,7 +16,9 @@
 	<div class="container" id="app" v-cloak>
 		<div class="alert alert-secondary">
 			<h1>Комментарий</h1>
+			<!-- Добавлять класс has-danger если переменная name пуста -->
 			<div class="form-group" :class="{'has-danger' : !name}">
+				<!-- v-model - связать с переменной -->
 				<input 
 					type="text" 
 					class="form-control"
@@ -25,7 +27,11 @@
 					ref="nameComment"
 				>
 			</div>
+			<!-- Добавлять класс has-danger если переменная text пуста -->
 			<div class="form-group" :class="{'has-danger' : !text}">
+				<!-- v-model - связать с переменной -->
+				<!-- :placeholder - placeholder с vue -->
+				<!-- :maxlength - maxlength с vue -->
 				<textarea 
 					class="form-control"
 					:placeholder="'Максимально символов : ' + maxText + ' знаков'"
@@ -33,19 +39,30 @@
 					:maxlength="maxText"
 					ref="textComment"
 				></textarea>
+				<!-- Показывать сколько осталось -->
+				 <!-- v-if - если вычисляемое свойство enterComment меньше чем переменная maxText, то показать -->
+				 <!-- вместо фигурных скобок подставить результат вычисляемого свойства enterComment -->
 				<i v-if="enterComment < maxText">Осталось {{enterComment}} символов</i>
 			</div>
+			<!-- v-if - если есть переменная errorMsg, то показать блок -->
 			<div class="alert alert-danger" v-if="errorMsg">
+				 <!-- вместо фигурных скобок подставить переменную errorMsg -->
 				{{errorMsg}}
 			</div>
+			<!-- При клике вызвать метод addComment -->
 			<button class="btn btn-primary" @click="addComment()">
 				Добавить
 			</button>
 		</div>
+		<!-- v-if - показать блок, если длина массива items больше 0 -->
 		<div class="alert alert-primary" v-if="items.length > 0">
+			<!-- Перебрать массив items, записав каждый элемент в item -->
 			<div class="comments" v-for="item in items">
+				<!-- вместо фигурных скобок подставить переменную item.name - имя элемента item -->
 				<h3>{{item.name}}</h3>
+				<!-- вместо фигурных скобок подставить переменную item.text - имя элемента item -->
 				<p>{{item.text}}</p>
+				<!-- при клике вызывать метод removeComment, передавая массив данных items -->
 				<button class="btn btn-xs btn-danger" @click="removeComment(items)">Удалить</button>
 			</div>
 		</div>

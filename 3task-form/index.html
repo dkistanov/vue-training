@@ -6,14 +6,23 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
 	<form id="app" v-cloak>
 		<h1>Услуги</h1>
 		<ul>
+			<!-- Перебор элементов сервиса -->
+			<!-- v-for - перебор "service in services" - в массиве services каждый элемент service -->
+			<!-- @click="toggleActive(service)" - при клике вызывать метод toggleActive и передать туда параметр service -->
+			<!-- :class="{'active': service.active}" - добавлять класс active если у service.active положение true -->
 			<li v-for="service in services" @click="toggleActive(service)" :class="{'active': service.active}">
+				<!-- {{ service.name }} - передать значение service.name -->
+				<!-- {{service.price | currency}} - передать значение service.price проведенное через фильтр currency -->
 				{{ service.name }} <span>{{service.price | currency}}</span>
 			</li>
 		</ul>
 		<div class="total">
+			<!-- {{ total() | currency }} - вызвать метод total и потом провести его через фильтр currency -->
 			Итого <span>{{ total() | currency }}</span>
 		</div>
 	</form>
