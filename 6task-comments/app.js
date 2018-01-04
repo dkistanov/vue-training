@@ -1,7 +1,7 @@
 // Создать сущность Vue
 var demo = new Vue({
 	el: "#app", // Элемент DOM в котором будет работать Vue
-	data: {
+	data: { // переменные
 		name: 'Andrew',
 		text: '',
 		maxText: 100,
