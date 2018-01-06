@@ -13,12 +13,18 @@
 	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
 	<div id="app" v-cloak>
 		<div class="topbar">
+			<!-- записать в фигурные скобки значение переменной callCounter -->
 			<h1>Бесконечная прокрутка - вызов {{callCounter}}</h1>
 		</div>
+		<!-- @scroll - при скролле вызывать метод onScroll  -->
 		<div class="list__wrapper" @scroll="onScroll">
 			<div class="list">
+				<!-- перебрать массив tweets записав в элементы tweet -->
 				<div class="list__item" v-for="tweet in tweets">
+					<!-- записать в фигурные скобки значение переменной tweet.title -->
 					<p>{{tweet.title}}</p>
+					<!-- :src - атррибут src работает с vue -->
+					<!-- подставить значение переменной tweet.thumbnailUrl -->
 					<img :src="tweet.thumbnailUrl">
 				</div>
 			</div>
