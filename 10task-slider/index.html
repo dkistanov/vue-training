@@ -1,0 +1,77 @@
+<!-- Самописный слайдер -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>10task-slider</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<div id="app" v-cloak>
+
+		<!-- переключатели -->
+		<section class="dots">
+			<!-- v-show="hasFirst()" - показать если метод hasFirst() - вернет true -->
+			<!-- @click="switchIndex(prevIndex)" - при клике вызвать метод switchIndex -->
+			<!-- prevIndex - передаваемый параметр, вычисляемый -->
+			<button class="btn btn-prev" type="button" v-show="hasFirst()" @click="switchIndex(prevIndex)">
+				Предыдущая
+			</button>
+			<!-- v-for="(dot,index) in photos" перебрать массив photos по ключу dot, и также считать index -->
+			<!-- :class="{'active': activeClass(index)}" - добавлять класс active если функция activeClass() вернула true -->
+			<!-- @click="switchIndex(index)" - при клике вызывать метод switchIndex, и передавать в него index нажатого элемента -->
+			<div 
+				class="dot" 
+				v-for="(dot,index) in photos" 
+				:class="{'active': activeClass(index)}"
+				@click="switchIndex(index)"
+			></div>
+			<!-- v-show="hasLast()" - показать если метод hasLast() - вернет true -->
+			<!-- @click="switchIndex(nextIndex)" - при клике вызвать метод switchIndex -->
+			<!-- nextIndex - передаваемый параметр, вычисляемый -->
+			<button class="btn btn-next" type="button" v-show="hasLast()" @click="switchIndex(nextIndex)">
+				Следующая
+			</button>
+		</section>
+
+		<!-- Анимировать элементы внутри -->
+		<!-- :name="switches" - название анимации будет равно переменной switches -->
+		<!-- tag="section" - HTML - тэг который обернёт все элементы внутри -->
+		<transition-group :name="switches" tag="section" class="grid">
+			<!-- перебрать массив photos в элементы photo -->
+			<!-- :key="photo" - ключ элемента массива -->
+			<!-- v-show="activeClass(index)" - показать если метод activeClass вернет true, для каждого элемента -->
+			<div class="grid__item card" v-for="(photo,index) in photos" :key="photo" v-show="activeClass(index)">
+				<div class="card__body">
+					<!-- :src - атррибут src работает с vue -->
+					<!-- подставить значение photo.urls.small -->
+					<img :src="photo.urls.small" alt="">
+				</div>
+				<div class="card__footer media">
+					<!-- :src - атррибут src работает с vue -->
+					<!-- подставить значение photo.user.profile_image.small -->
+					<img :src="photo.user.profile_image.small" alt="" class="media__obj">
+					<div class="media__body">
+						<!-- :href - атррибут href работает с vue -->
+						<!-- подставить значение photo.user.portfolio_url -->
+						<!-- вместо фигурных скобок подставить значение переменной photo.user.name -->
+						<a :href="photo.user.portfolio_url" target="_blank">{{ photo.user.name }}</a>
+					</div>
+				</div>
+			</div>
+		</transition-group>
+
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+	<!-- vue-resourse - плагин для vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="app.js"></script>
+</body>
+</html>
