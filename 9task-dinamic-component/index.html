@@ -1,0 +1,55 @@
+<!-- Динамические компоненты, анимации -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>9task-dinamic-component</title>
+	<!-- Подключение своих стилей -->
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<!-- Шаблоны для компонентов vue -->
+	<template id="circles-template">
+		<div class="circles"></div>
+	</template>
+	<template id="triangle-template">
+		<div class="triangle"></div>
+	</template>
+	<template id="square-template">
+		<div class="square"></div>
+	</template>
+	<template id="egg-template">
+		<div class="egg"></div>
+	</template>
+
+	<!-- Блок на который действует vue -->
+	<!-- v-cloak скрывает нескомпилированные элементы, пока сущность Vue.js не готова. -->
+	<div id="app" v-cloak>
+		<header>
+			<nav>
+				<!-- при клике вызвать метод switchView -->
+				<!-- передать в него нужное значение -->
+				<a href="#" @click="switchView('circles')">Круг</a>
+				<a href="#" @click="switchView('triangle')">Треугольник</a>
+				<a href="#" @click="switchView('square')">Квадрат</a>
+				<a href="#" @click="switchView('egg')">Яйцо</a>
+			</nav>
+		</header>
+		
+		<!-- Анимация с именем switch -->
+		<transition name="switch">
+			<!-- тег для компонентов -->
+			<!-- :is - имя компонента, который будет показан -->
+			<!-- currentView - переменная хранящая в себе название компонента -->
+			<component :is="currentView"></component>
+		</transition>
+	</div>
+	<!-- Подключение с cdn vue -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+	<!-- Подключение своих скриптов -->
+	<script src="pagination.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
