@@ -46,7 +46,7 @@
 			<!-- перебрать массив photos в элементы photo -->
 			<!-- :key="photo" - ключ элемента массива -->
 			<!-- v-show="activeClass(index)" - показать если метод activeClass вернет true, для каждого элемента -->
-			<div class="grid__item card" v-for="(photo,index) in photos" :key="photo" v-show="activeClass(index)">
+			<div class="grid__item card" v-for="(photo,index) in photos" :key="photo" v-show="activeClass(index)" >
 				<div class="card__body">
 					<!-- :src - атррибут src работает с vue -->
 					<!-- подставить значение photo.urls.small -->
