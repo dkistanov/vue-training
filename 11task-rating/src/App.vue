@@ -1,3 +1,4 @@
+<!-- Шаблон -->
 <template>
   <div class="main">
     <div class="rating">
@@ -6,22 +7,27 @@
   </div>
 </template>
 
+<!-- Скрипты - логика -->
 <script>
+// импортируем файл Rating.vue
 import Rating from './components/Rating.vue'
 
+// экспортируем наш код js
 export default {
   name: 'app',
-  data () {
+  data () { // переменные
     return {
-      grade: 0
+      grade: 0 // начальная заказа
     }
   },
-  components: {
+  components: { // компоненты
     Rating
   }
 }
+
 </script>
 
+<!-- Стили на языке scss -->
 <style lang="scss">
   html,body {
     width: 100%;
