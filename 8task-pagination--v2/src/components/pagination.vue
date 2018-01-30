@@ -1,3 +1,5 @@
+<!-- Компонент пагинации -->
+
 <template>
 	<div class="pagination">
 		<div class="pagination__left">

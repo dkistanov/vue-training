@@ -1,3 +1,5 @@
+<!-- Главный компонент -->
+
 <template>
   <div id="app">
     <app-pagination
@@ -8,23 +10,15 @@
     ></app-pagination>
 
     <section class="grid">
-      <div class="grid__item card" v-for="photo in photos">
-        <div class="card__body">
-          <img :src="photo.urls.small" alt="">
-        </div>
-        <div class="card__footer media">
-          <img :src="photo.user.profile_image.small" alt="" class="media__obj">
-          <div class="media__body">
-            <a :href="photo.user.portfolio_url" target="_blank">{{ photo.user.name }}</a>
-          </div>
-        </div>
-      </div>
+      <app-card :photo.sync="photo" v-for="photo in photos"></app-card>
     </section>
+    
   </div>
 </template>
 
 <script>
 var appId = 'b41c7381e483857da652f07f00645fb2568d03cef2a5c8a3d57e967f2cd1dbf3';
+import AppCard from './components/Card.vue'
 
 export default {
   name: 'app',
@@ -35,6 +29,9 @@ export default {
       perPage: 9,
       currentPage: 1
     }
+  },
+  components: {
+    AppCard
   },
   methods: {
     fetchPhotos: function(page) {
