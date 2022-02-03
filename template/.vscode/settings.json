@@ -1,5 +1,0 @@
-{
-  "editor.formatOnSave": true,
-  "files.associations": { "*.htm": "twig" },
-  "javascript.validate.enable": false
-}
